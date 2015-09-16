@@ -1,8 +1,9 @@
 #!/usr/bin/env python
+__author__ = 'Jared'
 
 """
 Authored by: Jared Hancock
-Last Update: May 2015
+Last Update: September 2015
 """
 
 import urllib2
@@ -11,10 +12,16 @@ import time
 import datetime
 import numpy as np
 import csv
+import Events
 
 
+"""
+Class for a specific stock (i.e. "NKE")
+Contains arrays of data and an Events object that contains
+data about when an event was triggered
+"""
 class Stock:
-    def __init__(self, symbol):
+    def __init__(self, symbol="NKE"):
         self.symbol = symbol
         self.price = 0.0
         self.closep = []
@@ -23,56 +30,21 @@ class Stock:
         self.highp = []
         self.lowp = []
         self.openp = []
+        self.events = Events(symbol)
+
+    def getEventsForStock(self):
+        fromfile = open("events.txt", 'r')
+        fileData = csv.reader(fromfile)
+        for line in fileData:
+            if self.symbol == line[1]:
+                self.events.closepappend(float(line[2]))
+                self.events.percRets.append(float(line[3]))
+                self.events.vwap.append(float(line[4]))
+                self.events.pos.append(line[5])
+
+        return self.events
 
 
-class Event:
-    def __init__(self):
-        self.symbol = None
-        self.percRets = []
-        self.vwap = []
-        self.pos = []
-        self.dates = []
-        self.closep = []
-
-
-'''
-
-'''
-def getEvents():
-    fromfile = open("events.txt", 'r')
-    fileData = csv.reader(fromfile)
-    dates = []
-    symbols = []
-    closep = []
-    percRets = []
-    e_vwap = []
-    pos = []
-
-    for line in fileData:
-        dates.append(mdates.datestr2num(line[0]))
-        symbols.append(line[1])
-        closep.append(float(line[2]))
-        percRets.append(float(line[3]))
-        e_vwap.append(line[4])
-        pos.append(line[5])
-
-    events = []
-
-    e = Event()
-    e.symbol = symbols[0]
-
-    for i in range(0, len(closep)):
-        if e.symbol == symbols[i]:
-            e.closep.append(closep[i])
-            e.dates.append(dates[i])
-            e.percRets.append(percRets[i])
-            e.vwap.append(e_vwap[i])
-            e.pos.append(pos[i])
-
-
-
-
-    return events #dates, symbols, closep, percRets, e_vwap, pos
 
 def pullIntraDay(stock):
     '''
