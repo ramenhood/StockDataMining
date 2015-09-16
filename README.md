@@ -1,5 +1,6 @@
 # StockDataMining
 Algorithmic Trading Platform
+
 WARNING: Results are currently inaccurate! Very much a work in progress
 
 TODO
