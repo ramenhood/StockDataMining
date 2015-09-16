@@ -42,11 +42,13 @@ MONEY = '{:,.2f}'
 #     fromfile.close()
 #     return dates, symbols, closep, percRets, tradeProfit, grossp, pos
 
+
+"""
+:param results: list of calculated attributes of a stock
+    ex: [totalProfit, avg_daily_rets, volatility, sharpe]
+"""
 def logResults(stock, results):
-    """
-    :param results: list of calculated attributes of a stock
-        ex: [totalProfit, avg_daily_rets, volatility, sharpe]
-    """
+
     tofile = open("results.txt", 'a')
     tofile.write(str(datetime.datetime.fromtimestamp(int(time.time())).strftime('%Y-%m-%d %H:%M:%S'))+'\n')
     lines = stock.symbol+'\n'

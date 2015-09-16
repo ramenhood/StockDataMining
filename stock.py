@@ -34,6 +34,10 @@ class Event:
         self.dates = []
         self.closep = []
 
+
+'''
+
+'''
 def getEvents():
     fromfile = open("events.txt", 'r')
     fileData = csv.reader(fromfile)

@@ -23,7 +23,6 @@ Last Update: May 2015
 
 '''
 
-
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import matplotlib.dates as mdates
@@ -33,8 +32,12 @@ import pylab
 import csv
 from calcUtils import *
 matplotlib.rcParams.update({'font.size': 9})
-from portManager import getEvents
+# from portManager import getEvents
 
+
+'''
+TODO: move this function to a different file
+'''
 def getEvents():
     fromfile = open("events.txt", 'r')
     fileData = csv.reader(fromfile)
@@ -57,17 +60,17 @@ def getEvents():
 
     return dates, symbols, closep, percRets, tradeProfit, grossp, pos
 
-
+"""
+:param mystock: stock to graph (NKE, GOOG, etc)
+:param MA1: simple moving average
+:param MA2: exponential moving average
+:param rsi: rsi results
+:param vwap: volume weighted average price results
+:param events: counter for points that break the strategy's critera
+:return:
+"""
 def graphStock(mystock, MA1, MA2, rsi=None, vwap=None, events=0):
-    """
-    :param mystock:
-    :param MA1:
-    :param MA2:
-    :param rsi:
-    :param vwap:
-    :param events:
-    :return:
-    """
+
     stock = mystock.symbol
     date, closep, highp, lowp, openp, volume = mystock.date, mystock.closep, mystock.highp,\
                                                mystock.lowp, mystock.openp, mystock.vol
