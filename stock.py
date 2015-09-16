@@ -17,8 +17,7 @@ import Events
 
 """
 Class for a specific stock (i.e. "NKE")
-Contains arrays of data and an Events object that contains
-data about when an event was triggered
+Contains arrays of data and an Events object that contains data about when an event was triggered
 """
 class Stock:
     def __init__(self, symbol="NKE"):

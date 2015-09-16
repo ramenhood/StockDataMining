@@ -6,7 +6,7 @@ import matplotlib.dates as mdates
 
 
 """
-Container class to hold all events for a specific stock
+Container class to hold all events for a specific stock.
 """
 class Events:
     def __init__(self, symbol="NKE"):

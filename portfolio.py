@@ -6,6 +6,7 @@ from stock import Stock
 import csv
 import matplotlib.dates as mdates
 
+
 """
 Class containing instances of Stocks.
 NOTE: move toward using methods that explicitly use the Stock class. Other functionality will be deprecated
